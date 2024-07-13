@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="{{ secure_asset('css/style.css') }}">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-left">
+            <img src="{{ secure_asset('images/logo.png') }}" alt="Logo">
+        </div>
+        <div class="login-right">
+            <h2>Autenticação</h2>
+            <form method="POST" action="{{ route('login') }}">
+                @csrf
+                <div class="form-group">
+                    <label for="email">E-mail*</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Senha*</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit" class="btn">Entrar</button>
+            </form>
+            <a href="#" class="forgot-password">Esqueci minha senha</a>
+            <p class="policy">
+                Ao efetuar login, declaro estar de acordo com a <a href="#">Política de Privacidade</a> e o <a href="#">Termo de Uso</a> da Plataforma
+            </p>
+            @if ($errors->any())
+                <div class="errors">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+        </div>
+    </div>
+</body>
+</html>
